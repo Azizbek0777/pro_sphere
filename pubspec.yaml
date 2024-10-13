@@ -42,6 +42,8 @@ dependencies:
   get_storage: any
   flutter_bloc: any
   url_launcher: any
+  flutter_staggered_grid_view: any
+  flutter_svg_provider: ^1.0.7
 
 dev_dependencies:
   flutter_test:

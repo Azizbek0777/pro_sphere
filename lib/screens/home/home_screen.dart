@@ -5,6 +5,7 @@ import 'package:pro_sphere/bloc/currency/currency_bloc.dart';
 import 'package:pro_sphere/main.dart';
 import 'package:pro_sphere/route/route_constants.dart';
 import 'package:pro_sphere/screens/home/widget/exchange_rate_widget.dart';
+import 'package:pro_sphere/screens/home/widget/search_widget.dart';
 import 'package:pro_sphere/screens/home/widget/weathe_widget.dart';
 import 'package:pro_sphere/utils/style/colors.dart';
 import 'package:pro_sphere/utils/ui_needs/app_png.dart';
@@ -29,102 +30,49 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned(
-              top: 0,
-              right: 10.h,
-              child: CircleAvatar(
-                backgroundColor: AppColors.backgroundColor,
-                radius: 24.r,
-                child: SvgPicture.asset(AppSvg.account),
+        child: Padding(
+          padding: EdgeInsets.all(16.0.w),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                right: 0,
+                child: CircleAvatar(
+                  backgroundColor: AppColors.white,
+                  radius: 24.r,
+                  child: SvgPicture.asset(
+                    AppSvg.account,
+                    colorFilter: const ColorFilter.mode(AppColors.c141414, BlendMode.srcIn),
+                  ),
+                ),
               ),
-            ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppSvg.logoPro,
-                  ),
-                  SizedBox(
-                    height: 50.h,
-                  ),
-                  SearchAnchor(
-                    dividerColor: AppColors.c000000,
-                    viewBackgroundColor: AppColors.cF5F6F7,
-                    viewTrailing: [
-                      InkWell(
-                        borderRadius: BorderRadius.circular(100.r),
-                        onTap: () {},
-                        child: SvgPicture.asset("assets/svg/ph_microphone.svg"),
-                      ),
-                      SizedBox(width: 16.w),
-                    ],
-                    viewLeading: CircleAvatar(
-                      backgroundColor: AppColors.c5FE0D8,
-                      radius: 24.w,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(100.r),
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: SvgPicture.asset("assets/svg/arrow.svg"),
-                      ),
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("SFERA", style: Theme.of(context).textTheme.headlineMedium),
+                    SizedBox(
+                      height: 50.h,
                     ),
-                    builder: (BuildContext context, SearchController controller) {
-                      return Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16.w),
-                        margin: EdgeInsets.symmetric(horizontal: 16.w),
-                        height: 52.h,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100.r),
-                          border: Border.all(color: AppColors.c5FE0D8),
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, RouteList.search);
-                            // controller.openView();
-                          },
-                          child: Row(
-                            children: [
-                              Text(
-                                "Поиск",
-                                style: Theme.of(context).textTheme.displayLarge?.copyWith(color: AppColors.c050505.withOpacity(0.4)),
-                              ),
-                              const Spacer(),
-                              SvgPicture.asset(AppSvg.phMicrophone)
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                    suggestionsBuilder: (BuildContext context, SearchController controller) {
-                      return List<ListTile>.generate(10, (int index) {
-                        final String item = "item $index";
-                        return ListTile(
-                          title: Text(item),
-                        );
-                      });
-                    },
-                  ),
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: Row(
+                    SearchWidget(onTap: (){
+                      Navigator.pushNamed(context, RouteList.search);
+                    },),
+                    SizedBox(height: 20.h),
+                    Row(
                       children: [
                         const WeatheWidget(),
                         SizedBox(width: 10.w),
                         const ExchangeRateWidget(),
                       ],
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

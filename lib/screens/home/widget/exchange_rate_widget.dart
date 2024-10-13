@@ -15,156 +15,123 @@ class ExchangeRateWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: 78.h,
         padding: EdgeInsets.all(10.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          color: AppColors.c5FE0D8,
+          color: AppColors.white,
         ),
         child: BlocConsumer<CurrencyBloc, CurrencyState>(
           listener: (context, state) {
             // TODO: implement listener
           },
           builder: (context, state) {
-            if(state is CurrencyLoaded){
+            if (state is CurrencyLoaded) {
               return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    state.currencyResponse?.response?[0].date??"",
-                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                      color: AppColors.cFEFEFE,
-                      fontSize: 12.sp,
-                    ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 16.r,
+                        backgroundColor: AppColors.cF8F8F8,
+                        child: SvgPicture.asset(AppSvg.location),
+                      ),
+                      SizedBox(width: 10.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Ташкент",
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: 15.sp),
+                          ),
+                          Text(
+                            "24 сентября",
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                  fontSize: 12.sp,
+                                  color: AppColors.c141414.withOpacity(0.4),
+                                ),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  const Spacer(),
+                  SizedBox(height: 10.h),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                "USD",
-                                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                  color: AppColors.cFEFEFE.withOpacity(0.6),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              SvgPicture.asset(AppSvg.growth),
-                            ],
+                          Text(
+                            "Тепло",
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: 15.sp, color: AppColors.c141414.withOpacity(0.4)),
                           ),
                           Text(
-                            state.currencyResponse?.response?[0].rate??"",
-                            style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                              color: AppColors.cFEFEFE,
-                              fontSize: 16.sp,
-                            ),
-                          )
+                            "+25°",
+                            style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: 40.sp, color: AppColors.c141414, fontWeight: FontWeight.w300),
+                          ),
                         ],
                       ),
                       const Spacer(),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "EUR",
-                                style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                  color: AppColors.cFEFEFE.withOpacity(0.6),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
-                              SvgPicture.asset(AppSvg.decrease),
-                            ],
-                          ),
-                          Text(
-                            state.currencyResponse?.response?[1].rate??"",
-                            style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                              color: AppColors.cFEFEFE,
-                              fontSize: 16.sp,
-                            ),
-                          )
-                        ],
-                      ),
                     ],
                   )
                 ],
               );
-
             }
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "12.04.2024",
-                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        color: AppColors.cFEFEFE,
-                        fontSize: 12.sp,
-                      ),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 16.r,
+                      backgroundColor: AppColors.cF8F8F8,
+                      child: SvgPicture.asset(AppSvg.dollar),
+                    ),
+                    SizedBox(width: 10.w),
+                    Text(
+                      "USD",
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            fontSize: 15.sp,
+                          ),
+                    ),
+                  ],
                 ),
-                const Spacer(),
+                SizedBox(height: 10.h),
                 Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
+                        Text(
+                          "-8.28",
+                          style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontSize: 15.sp, color: AppColors.cFF0303),
+                        ),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "USD",
-                              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                    color: AppColors.cFEFEFE.withOpacity(0.6),
+                              "12,450",
+                              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                    fontSize: 40.sp,
+                                    color: AppColors.c141414,
+                                    fontWeight: FontWeight.w300,
                                   ),
+                              textAlign: TextAlign.end,
                             ),
-                            SizedBox(
-                              width: 10.w,
+                            Text(
+                              ".58",
+                              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                                    fontSize: 17.sp,
+                                    color: AppColors.c141414.withOpacity(0.4),
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                              textAlign: TextAlign.end,
+
                             ),
-                            SvgPicture.asset(AppSvg.growth),
                           ],
                         ),
-                        Text(
-                          "12 120.15",
-                          style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                color: AppColors.cFEFEFE,
-                                fontSize: 16.sp,
-                              ),
-                        )
                       ],
                     ),
                     const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "EUR",
-                              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                    color: AppColors.cFEFEFE.withOpacity(0.6),
-                                  ),
-                            ),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            SvgPicture.asset(AppSvg.decrease),
-                          ],
-                        ),
-                        Text(
-                          "12 120.15",
-                          style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                                color: AppColors.cFEFEFE,
-                                fontSize: 16.sp,
-                              ),
-                        )
-                      ],
-                    ),
                   ],
                 )
               ],
